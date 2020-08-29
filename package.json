@@ -2,6 +2,9 @@
   "name": "qobuz",
   "version": "0.0.0",
   "description": "A Qobuz client library and CLI for Node.js",
+  "bin": {
+    "qobuz": "./dist/cli"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node ./dist",
@@ -29,7 +32,9 @@
   "dependencies": {
     "@types/node": "^14.6.2",
     "@types/node-fetch": "^2.5.7",
+    "@types/yargs": "^15.0.5",
     "node-fetch": "^2.6.0",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "yargs": "^15.4.1"
   }
 }
