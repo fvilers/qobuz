@@ -1,7 +1,10 @@
+import { config } from "dotenv";
 import fetch from "node-fetch";
 import AlbumEndpoint from "./endpoints/AlbumEndpoint";
 import { buildQuerystring } from "./helpers";
 import QueryParameters from "./types/QueryParameters";
+
+config();
 
 const API_ENDPOINT = "http://www.qobuz.com/api.json/0.2/";
 
