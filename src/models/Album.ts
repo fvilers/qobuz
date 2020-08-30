@@ -1,11 +1,12 @@
 import Article from "./Article";
 import Artist from "./Artist";
 import Award from "./Award";
+import Collection from "./Collection";
 import Genre from "./Genre";
 import Goody from "./Goody";
 import Image from "./Image";
 import Label from "./Label";
-import Tracks from "./Tracks";
+import Track from "./Track";
 
 interface Album {
   article_ids: { [key: string]: number };
@@ -56,7 +57,7 @@ interface Album {
   subtitle: string;
   title: string;
   tracks_count: number;
-  tracks: Tracks;
+  tracks: Collection<Track>;
   upc: string;
   url: string;
 }
