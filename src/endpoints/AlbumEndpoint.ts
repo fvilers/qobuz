@@ -1,4 +1,5 @@
 import Album from "../models/Album";
+import Artist from "../models/Artist";
 import Collection from "../models/Collection";
 import QobuzClient from "../QobuzClient";
 import QueryParameters from "../types/QueryParameters";
@@ -21,6 +22,11 @@ type Featured =
   | "ideal-discography"
   | "qobuzissims";
 type GetFeaturedResponse = { albums: Collection<Album> };
+type SearchResponse = {
+  albums: Collection<Album>;
+  artists: Collection<Artist>;
+  query: string;
+};
 
 class AlbumEndpoint {
   constructor(private readonly client: QobuzClient) {}
@@ -56,7 +62,7 @@ class AlbumEndpoint {
     offset?: number,
     supplierId?: string
   ): Promise<Collection<Album>> {
-    const parameters: Record<string, string> = { type };
+    const parameters: QueryParameters = { type };
 
     if (genreId !== undefined) {
       parameters["genre_id"] = genreId;
@@ -84,6 +90,16 @@ class AlbumEndpoint {
     );
 
     return albums;
+  }
+
+  search(query: string, limit?: number): Promise<SearchResponse> {
+    const parameters: QueryParameters = { query };
+
+    if (limit !== undefined) {
+      parameters["limit"] = limit.toString();
+    }
+
+    return this.client.get("album/search", parameters);
   }
 }
 
