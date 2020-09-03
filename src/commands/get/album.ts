@@ -1,5 +1,6 @@
 import chalk from "chalk";
-import { getBorderCharacters, table } from "table";
+import { table } from "table";
+import { TABLE_CONFIG } from "../../config";
 import Track from "../../models/Track";
 import QobuzClient from "../../QobuzClient";
 
@@ -39,14 +40,5 @@ export const handler = async ({ id }: Arguments) => {
     ],
   ];
 
-  console.log(
-    table(rows, {
-      border: getBorderCharacters(`void`),
-      columnDefault: {
-        paddingLeft: 0,
-        paddingRight: 1,
-      },
-      drawHorizontalLine: () => false,
-    })
-  );
+  console.log(table(rows, TABLE_CONFIG));
 };
