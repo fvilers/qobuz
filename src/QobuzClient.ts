@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import fetch from "node-fetch";
 import AlbumEndpoint from "./endpoints/AlbumEndpoint";
+import ArticleEndpoint from "./endpoints/ArticleEndpoint";
 import { buildQuerystring } from "./helpers";
 import QueryParameters from "./types/QueryParameters";
 
@@ -10,6 +11,7 @@ const API_ENDPOINT = "http://www.qobuz.com/api.json/0.2/";
 
 class QobuzClient {
   public readonly album: AlbumEndpoint;
+  public readonly article: ArticleEndpoint;
   private appId: string;
   private appSecret?: string;
 
@@ -24,6 +26,7 @@ class QobuzClient {
     }
 
     this.album = new AlbumEndpoint(this);
+    this.article = new ArticleEndpoint(this);
     this.appId = appId;
     this.appSecret = appSecret;
   }
